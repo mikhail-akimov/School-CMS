@@ -24,11 +24,26 @@
         {% endfor %}
     </div>
 
-    <div style="width:300px; height:150px; background-color:red">
+    <div style="width:1500px; height:150px; background-color:red">
         <p>Тут будет рассписание</p>
-        {% for item in schedule %}
-            <a href="#">{{ schedule.0 }}</a>
-        {% endfor %}
+        <div style="background:blue;">
+            {% for day in weekday %}
+                <div style="width:250px; float:left; background:pink;">
+                    {{ day.1 }}<br>
+                    {% for item in schedule %}
+                        {% if item.weekday == day.0 %}
+                            {{ item }}
+                            {% for time in starttime %}
+                                {% if item.starttime == time.0  %}
+                                    {{ time.1 }}
+                                {% endif %}
+                            {% endfor %}
+                            <br>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </di>
      </div>
 </body>
 </html>
