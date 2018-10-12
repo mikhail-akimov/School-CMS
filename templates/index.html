@@ -32,13 +32,18 @@
                     {{ day.1 }}<br>
                     {% for item in schedule %}
                         {% if item.weekday == day.0 %}
-                            {{ item }}
-                            {% for time in starttime %}
-                                {% if item.starttime == time.0  %}
-                                    {{ time.1 }}
+                            {%  for unit in grade %}
+                                {% if item.sch_grade == unit %}
+                                    {{ item.sch_grade }}<br>
+                                    {{ item }}
+                                    {% for time in starttime %}
+                                        {% if item.starttime == time.0  %}
+                                            {{ time.1 }}
+                                        {% endif %}
+                                    {% endfor %}
+                                    <br>
                                 {% endif %}
                             {% endfor %}
-                            <br>
                         {% endif %}
                     {% endfor %}
                 </div>
