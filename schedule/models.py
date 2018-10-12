@@ -84,7 +84,6 @@ class Schedule(MainModel):
     plan_lesson = models.ForeignKey('Lesson', on_delete=models.SET_NULL, null=True)
     weekday = models.CharField(max_length=2, choices=DAY_OW_THE_WEEK, null=False, default='1')
     starttime = models.CharField(max_length=2, choices=LESSON_START_TIME, null=False, default='1')
-    sch_grade = models.ForeignKey('Grade', on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return str(self.plan_lesson)
