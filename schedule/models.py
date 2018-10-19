@@ -1,22 +1,5 @@
 from django.db import models
-
-DAY_OW_THE_WEEK = [
-    ('1', 'Monday'),
-    ('2', 'Tuesday'),
-    ('3', 'Wednesday'),
-    ('4', 'Thursday'),
-    ('5', 'Friday'),
-    ('6', 'Saturday')
-]
-
-LESSON_START_TIME = [
-    ('1', '8:00'),
-    ('2', '9:00'),
-    ('3', '10:00'),
-    ('4', '11:00'),
-    ('5', '12:00'),
-    ('6', '13:00')
-]
+from django.conf import global_settings
 
 
 class MainModel(models.Model):
@@ -42,8 +25,7 @@ class Teacher(MainModel):
     surname = models.CharField(max_length=32)
 
     def __str__(self):
-        self.fio = ('{} {} {}'.format(self.lastname, self.firstname, self.surname))
-        return self.fio
+        return '{} {} {}'.format(self.lastname, self.firstname, self.surname)
 
 
 class Grade(MainModel):
@@ -82,8 +64,8 @@ class Lesson(MainModel):
 
 class Schedule(MainModel):
     plan_lesson = models.ForeignKey('Lesson', on_delete=models.SET_NULL, null=True)
-    weekday = models.CharField(max_length=2, choices=DAY_OW_THE_WEEK, null=False, default='1')
-    starttime = models.CharField(max_length=2, choices=LESSON_START_TIME, null=False, default='1')
+    weekday = models.CharField(max_length=2, choices=global_settings.DAY_OW_THE_WEEK, null=False, default='1')
+    starttime = models.CharField(max_length=2, choices=global_settings.LESSON_START_TIME, null=False, default='1')
 
     def __str__(self):
         return str(self.plan_lesson)
