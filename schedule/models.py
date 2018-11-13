@@ -51,6 +51,10 @@ class Subject(MainModel):
     def __str__(self):
         return self.name
 
+    def display_subject_teacher(self):
+        return str(self.subj_teacher)
+    display_subject_teacher.short_description = 'Teacher'
+
 
 class Lesson(MainModel):
     les_grade = models.ForeignKey('Grade', on_delete=models.SET_NULL, null=True)
@@ -69,3 +73,7 @@ class Schedule(MainModel):
 
     def __str__(self):
         return str(self.plan_lesson)
+
+    def display_lesson(self):
+        return str(self.plan_lesson)
+    display_lesson.short_description = 'Lesson'
