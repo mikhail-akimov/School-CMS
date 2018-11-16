@@ -1,4 +1,5 @@
 from django.contrib import admin
+from . import forms
 from .models import Subject, Grade, Teacher, Lesson, MainModel, Pupil, Room, Schedule
 
 
@@ -14,9 +15,14 @@ class TeacherAdmin(admin.ModelAdmin):
     list_display = ('lastname', 'firstname', 'surname')
 
 
+# Подменяем форму для неё
+
+
 @admin.register(Grade)
 class GradeAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name', 'lead')
+    add_form_template = 'admin/change_form_new.html'
+    form = forms.AddGrade
 
 
 @admin.register(Subject)
