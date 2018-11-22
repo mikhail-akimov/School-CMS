@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Schedule</title>
+</head>
+<body style="background-color:white">
+    <div style="background-color:gray; width: 500px; height: 200px;">
+        <p>Schedule</p>
+        <select style="float:left;">
+            {% for unit in grade %}
+                <option value="{{ grade.id }}">{{ grade.0 }}</option>
+            {% endfor %}
+        </select>
+        {% for day in weekday %}
+            <div style="float:left;">
+                {{ day.1 }}
+                <ul style="list-style-type:none;margin:0; padding:0;">
+                    {% for time in starttime %}
+                        <li style="">{{ time.1 }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div style="width:1500px; height:150px; background-color:red">
+        <p>Тут будет рассписание</p>
+        <div style="background:blue;">
+            {% for day in weekday %}
+                <div style="width:250px; float:left; background:pink;">
+                    {{ day.1 }}<br>
+                    {% for item in schedule %}
+                        {% if item.weekday == day.0 %}
+                            {%  for unit in grade %}
+                                {% if item.sch_grade == unit %}
+                                    {{ item.sch_grade }}<br>
+                                    {{ item }}
+                                    {% for time in starttime %}
+                                        {% if item.starttime == time.0  %}
+                                            {{ time.1 }}
+                                        {% endif %}
+                                    {% endfor %}
+                                    <br>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </di>
+     </div>
+</body>
+</html>
